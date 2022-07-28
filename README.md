@@ -1,8 +1,8 @@
-# ToDo Application with a Python API and Azure Cosmos DB API for MongoDB on Azure App Service
+# ToDo Application with a Node.js API and Azure Cosmos DB API for MongoDB on Azure App Service
 
-[![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/todo-python-mongo)
+[![Open in Remote - Containers](https://img.shields.io/static/v1?label=Remote%20-%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/todo-nodejs-mongo)
 
-A complete ToDo application that includes everything you need to build, deploy, and monitor an Azure solution using React.js for the Web application, Python (FastAPI) for the API, Azure Cosmos DB API for MongoDB for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
+A complete ToDo application that includes everything you need to build, deploy, and monitor an Azure solution using React.js for the Web application, Node.js for the API, Azure Cosmos DB API for MongoDB for storage, and Azure Monitor for monitoring and logging. It includes application code, tools, and pipelines that serve as a foundation from which you can build upon and customize when creating your own solutions.
 
 Let's jump in and get the ToDo app up and running in Azure. When you are finished, you will have a fully functional web app deployed on Azure. In later steps, you'll see how to setup a pipeline and monitor the application.
 
@@ -24,8 +24,7 @@ The following prerequisites are required to use this application. Please ensure 
     curl -fsSL https://aka.ms/install-azd.sh | bash
     ```
 - [Azure CLI (2.38.0+)](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- [Python (3.8+)](https://www.python.org/downloads/) - for the API backend
-- [Node.js with npm (16.13.1+)](https://nodejs.org/) - for the Web frontend
+- [Node.js with npm (16.13.1+)](https://nodejs.org/) - for API backend and Web frontend
 - [Git (2.36.1+)](https://git-scm.com/)
 
 ### Quickstart
@@ -33,11 +32,10 @@ The following prerequisites are required to use this application. Please ensure 
 The fastest way for you to get this application up and running on Azure is to use the `azd up` command. This single command will create and configure all necessary Azure resources - including access policies and roles for your account and service-to-service communication with Managed Identities.
 
 1. Open a terminal, create a new empty folder, and change into it.
-1. Create a new [Python virtual environment](https://docs.python.org/3/library/venv.html).
 1. Run the following command to initialize the project, provision Azure resources, and deploy the application code.
 
 ```bash
-azd up --template todo-python-mongo
+azd up --template todo-nodejs-mongo
 ```
 
 You will be prompted for the following information:

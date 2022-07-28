@@ -65,9 +65,8 @@ resource api 'Microsoft.Web/sites@2021-03-01' = {
     serverFarmId: appServicePlan.id
     siteConfig: {
       alwaysOn: true
-      linuxFxVersion: 'PYTHON|3.8'
+      linuxFxVersion: 'NODE|16-lts'
       ftpsState: 'FtpsOnly'
-      appCommandLine: 'gunicorn --workers 4 --threads 2 --timeout 60 --access-logfile "-" --error-logfile "-" --bind=0.0.0.0:8000 -k uvicorn.workers.UvicornWorker todo.app:app'
     }
     httpsOnly: true
   }
