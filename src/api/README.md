@@ -1,31 +1,47 @@
-# Node with Typescript Express REST API
+# Python TODO API
 
 ## Setup
 
-### Prerequisites
+Requirements:
 
-- Node (16.13.0)
-- NPM (8.1.0)
+- Python (3.8+)
 
-### Local Environment
+```bash
+$ pip install -r requirements.txt
+```
 
-Create a `.env` with the following configuration:
+Or
 
-- `AZURE_COSMOS_CONNECTION_STRING` - Cosmos DB connection string (Mongo DB also supported)
-- `AZURE_COSMOS_DATABASE_NAME` - Cosmos DB database name (Will automatically be created if it doesn't exist) (default: Todo)
-- `APPLICATIONINSIGHTS_CONNECTION_STRING` - Azure Application Insights connection string
-- `APPLICATIONINSIGHTS_ROLE_NAME` - Azure Application Insights Role name (default: API)
+```bash
+$ poetry install
+```
 
-### Install Dependencies
+## Running
 
-Run `npm ci` to install local dependencies
+Before running, set the `AZURE_COSMOS_CONNECTION_STRING` environment variable to the connection-string for mongo/cosmos.
 
-### Build & Compile
+Run the following common from the root of the api folder to start the app:
 
-Run `npm run build` to build & compile the Typescript code into the `./dist` folder
+```bash
+$ uvicorn todo.app:app --port 3100 --reload
+```
 
-### Run application
+There is also a launch profile in VS Code for debugging.
 
-Run `npm start` to start the local development server
+## Running in Docker
 
-Launch browser @ `http://localhost:3100`. The default page hosts the Open API UI where you can try out the API
+The environment variable AZURE_COSMOS_CONNECTION_STRING must be set and then application runs on TCP 8080:
+
+```bash
+docker build . -t fastapi-todo
+docker run --env-file ./src/.env -p 8080:8080 -t fastapi-todo
+```
+
+## Tests
+
+The tests can be run from the command line, or the launch profile in VS Code
+
+```bash
+$ pip install -r requirements-test.txt
+$ AZURE_COSMOS_DATABASE_NAME=test_db python -m pytest tests/
+```

@@ -12,29 +12,28 @@
             "url": "http://localhost:3000",
             "sourceMapPathOverrides": {
                 "webpack:///src/*": "${webRoot}/*"
-            }, 
+            },
         },
 
         {
             "name": "Debug API",
+            "type": "python",
             "request": "launch",
-            "runtimeArgs": [
-                "run",
-                "start"
-            ],
-            "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "pwa-node",
+            "module": "uvicorn",
             "cwd": "${workspaceFolder}/src/api",
+            "args": [
+                "todo.app:app",
+                "--port", "3100",
+                "--reload"
+            ],
+            "justMyCode": true,
+            "python": "${workspaceFolder}/src/api/api_env/bin/python3",
             "envFile": "${input:dotEnvFilePath}",
-            "env": {
-                "NODE_ENV": "development"
+            "windows": {
+                "python": "${workspaceFolder}/src/api/api_env/scripts/python.exe"
             },
-            "preLaunchTask": "Restore API",
-            "outputCapture": "std"
-        },
+            "preLaunchTask": "Restore API"
+        }
     ],
 
     "inputs": [

@@ -42,7 +42,7 @@
             "type": "dotenv",
             "targetTasks": [
                 "Restore API",
-                "API npm start"
+                "API uvicorn launch"
             ],
             "file": "${input:dotEnvFilePath}"
         },
@@ -56,15 +56,15 @@
             "problemMatcher": []
         },
         {
-            "label": "API npm start",
+            "label": "API uvicorn launch",
             "detail": "Helper task--use 'Start API' task to ensure environment is set up correctly",
             "type": "shell",
-            "command": "npm run start",
+            "command": "${workspaceFolder}/src/api/api_env/bin/uvicorn todo.app:app --port 3100 --reload",
             "options": {
-                "cwd": "${workspaceFolder}/src/api/",
-                "env": {
-                    "NODE_ENV": "development"
-                }
+                "cwd": "${workspaceFolder}/src/api/"
+            },
+            "windows": {
+                "command": "${workspaceFolder}/src/api/api_env/scripts/uvicorn todo.app:app --port 3100 --reload"
             },
             "presentation": {
                 "panel": "dedicated",

@@ -1,10 +1,10 @@
-FROM node:16.13-alpine AS build
+FROM python:3.9
+WORKDIR /code
+EXPOSE 3100
+COPY ./requirements.txt /code/requirements.txt
 
-WORKDIR /app
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY . .
+COPY ./todo /code/todo
 
-RUN npm ci
-RUN npm run build
-
-CMD ["npm","run","start"]
+CMD ["uvicorn", "todo.app:app", "--host", "0.0.0.0", "--port", "3100", "--proxy-headers"]
